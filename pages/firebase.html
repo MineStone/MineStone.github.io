@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FireBase tests</title>
+	<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDdgHDne0bWJBngvqGdFs6J26jvDqm7bDk",
+    authDomain: "minestone-localtest.firebaseapp.com",
+    databaseURL: "https://minestone-localtest.firebaseio.com",
+    storageBucket: "minestone-localtest.appspot.com",
+    messagingSenderId: "1026130579270"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="../js/firebase_poster.js"></script>
+</head>
+<body>
+	<form>
+		<input type="text" id="sender" placeholder="Your name..."><br>
+		<input type="text" id="title" placeholder="Title..."><br>
+		<textarea id="post-text">Post text here...</textarea><br>
+		<input type="submit"><br>
+	</form>
+</body>
+</html>

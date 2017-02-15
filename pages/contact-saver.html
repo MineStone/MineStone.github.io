@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact - Saver</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+ crossorigin="anonymous"></script>
+ 	<script type="text/javascript">
+ 		function removeUser(id) {
+			localStorage.removeItem(id+":name");
+			localStorage.removeItem(id+":age");
+			localStorage.removeItem(id+":eyes");
+			localStorage.users--;
+			localStorage.nextID--;
+			$("#userlist").load(location.href + " #userlist");
+		}
+		function addUser(id, name, age, eyes) {
+			$("#userlist").prepend("<div>Name: "+name+"<br>Age: "+age+"<br>Eye color: "+eyes+"<br><button onclick=\"javascript:removeUser("+id+");\">Delete</button></div><br>");
+		}
+ 		window.onload = function() {
+ 			if (!localStorage.users) {
+				localStorage.users = 0;
+			}
+			if (!localStorage.nextID) {
+				localStorage.nextID = 0;
+			}
+
+			function createItem() {
+				localStorage.users++;
+				var name = $("#name").val();
+				var age = $("#age").val();
+				var eyes = $("#eyes").val();
+
+				localStorage.setItem(localStorage.nextID+":name", name);
+				localStorage.setItem(localStorage.nextID+":age", age);
+				localStorage.setItem(localStorage.nextID+":eyes", eyes);
+				localStorage.nextID++;
+			}
+			$("form").submit(function() {
+				if (typeof(Storage) !== "undefined") {
+					createItem();
+				} else {
+					document.write("WebStorange not supported in this ****** browser");
+				}
+			});
+ 			for (var i = 0; i<localStorage.users; i++) {
+ 				addUser(i, localStorage.getItem(i+":name"), localStorage.getItem(i+":age"), localStorage.getItem(i+":eyes"));
+ 			}
+ 		}
+ 	</script>
+</head>
+<body>
+	<div id="userlist" style="background-color: grey"></div>
+	<br>
+	<form>
+		<input type="text" id="name" placeholder="Name" /><br>
+		<input type="text" id="age" placeholder="Age" /><br>
+		<input type="text" id="eyes" placeholder="Eye Color" /><br>
+		<input type="submit" /><br>
+	</form>
+</body>
+</html>
